@@ -89,13 +89,23 @@ top level heading, or the behavior of org-gtd will be undefined."
   :package-version "2.0.0")
 
 (defcustom org-gtd-agenda-custom-commands
-  '(("g" "Scheduled today and all NEXT items"
+  '(
+    ;; ("t" "Scheduled today and all NEXT items"
+    ;;  (
+    ;;   (agenda "" ((org-agenda-span 1)
+    ;;               (org-agenda-start-day nil)))
+    ;;   (todo "NEXT" ((org-agenda-overriding-header "All NEXT items")))
+    ;;   (todo "WAIT" ((org-agenda-todo-ignore-with-date t)
+    ;;                 (org-agenda-overriding-header "Blocked items")))))
+    ("g" "Scheduled today and all NEXT items...."
      (
-      (agenda "" ((org-agenda-span 1)
+      (agenda "" ((org-agenda-span 'week)
                   (org-agenda-start-day nil)))
-      (todo "NEXT" ((org-agenda-overriding-header "All NEXT items")))
+      (todo "NEXT" ((org-agenda-overriding-header "NEXT items")))
       (todo "WAIT" ((org-agenda-todo-ignore-with-date t)
-                    (org-agenda-overriding-header "Blocked items"))))))
+                    (org-agenda-overriding-header "Blocked items")))
+      (alltodo "" ((org-agenda-overriding-header "Inbox")
+                   (org-agenda-files '("~/org/gtd/inbox.org")))))))
   "Agenda custom commands to be used for org-gtd.
 
 The provided default is to show the agenda for today and all TODOs marked as
